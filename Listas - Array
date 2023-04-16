@@ -21,6 +21,22 @@
     
     Cada elemento pode ser acessado por seu índice no vetor, iniciando em 0. 
     * /
+    
+   // Declara o array de nomes:
+
+           String[] nomes = new String[]{'Roberta', 'Maria', 'José'};
+
+          
+          // Converte o array em uma lista
+            List<String> listaNomes = new List<String>(nomes);
+
+           
+           // Adiciona um novo nome à lista
+            listaNomes.add('Ana');
+
+           
+           // Converte a lista de volta para um array
+            nomes = listaNomes.toArray(new String[0]);         
 
 
 //=========================================================================================================
@@ -32,7 +48,8 @@
 //=========================================================================================================
 
  
- Um conjunto é uma coleção não ordenada de elementos que não contém nenhuma duplicata. Os elementos do conjunto podem ser de qualquer tipo de dados — tipos primitivos, coleções, sObjects, tipos definidos pelo usuário e tipos integrados do Apex.
+ Um conjunto é uma coleção não ordenada de elementos que não contém nenhuma duplicata. Os elementos do conjunto podem ser de qualquer 
+ tipo de dados — tipos primitivos, coleções, sObjects, tipos definidos pelo usuário e tipos integrados do Apex.
 
 
         /*
