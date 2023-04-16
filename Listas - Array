@@ -1,0 +1,462 @@
+//================================================================================================
+        
+                                        //LISTAS
+        
+        https://www.youtube.com/watch?v=7lteHXbquBw&list=PLLkOunY3VivQ8ecT6B44-Ozg4ukDBHMWS&index=4
+
+
+ //===============================================================================================
+     /*  
+       Variavel normal: String nomes = 'Roberta'; 
+       
+       Vetor por ter: [] new String[]{}; 
+
+       
+       String[] nomes = new String[]{'Roberta', 'Maria', 'José'};
+
+       system.debug(nomes[0]);
+
+
+       nomes[0] retornaria 'Roberta'. 
+    
+    Cada elemento pode ser acessado por seu índice no vetor, iniciando em 0. 
+    * /
+
+
+//=========================================================================================================
+
+        
+                        // SET - não ordenada- não aceita valor dublicado
+
+
+//=========================================================================================================
+
+ 
+ Um conjunto é uma coleção não ordenada de elementos que não contém nenhuma duplicata. Os elementos do conjunto podem ser de qualquer tipo de dados — tipos primitivos, coleções, sObjects, tipos definidos pelo usuário e tipos integrados do Apex.
+
+
+        /*
+
+        FUNÇÃO SET
+
+
+            Set<String> cores = new Set<String>{'Preto', 'roxo','Azul','Rose', 'Amarelo'};
+                System.debug(cores);
+
+            //Adicionar informações dentro do SET
+
+            //Função .add adiciona na lista.
+
+            //Nova cor
+            cores.add('Cinza');
+            cores.add('Ciano');
+            
+            System.debug(cores);
+
+            //remove
+            cores.remove('Cinza');
+
+            System.debug(cores);
+
+            //Contains
+            System.debug('Tem roxo ? ' + C.contains('roxo'));
+            System.debug('Tem Rose ? ' + C.contains('Rose'));
+
+
+
+
+//===========================================================================================================================
+        
+                             // MAP -  chave/valor
+    DOCUMENTAÇÃO:
+
+    https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_methods_system_map.htm
+    
+    VIDEO: 
+
+    https://www.youtube.com/watch?v=8WE9uIZrEi0&list=PLLkOunY3VivQ8ecT6B44-Ozg4ukDBHMWS&index=32
+    
+    https://www.youtube.com/watch?v=Xr1imVWcCbA&t=9s
+    
+    https://www.youtube.com/watch?v=wEVMb-rGyR0
+    
+    FORCE NOOB :
+    https://www.youtube.com/watch?v=eoTsLv1bhDk - 17:30
+
+    https://www.youtube.com/watch?v=q5DAom3VFMI
+
+
+
+//===========================================================================================================================
+
+As chaves e os valores do mapa podem ser de qualquer tipo de dados — tipos primitivos, coleções, sObjects, tipos definidos pelo usuário e tipos integrados do Apex.
+
+A exclusividade das chaves de mapa de tipos definidos pelo usuário é determinada pelo é igual     (equals and hashCode), metodo que você fornece em suas classes. A exclusividade das chaves de todos os outros tipos não primitivos, como as chaves sObject, é determinada pela comparação dos valores de campo dos objetos.
+
+As chaves de mapa do tipo String diferenciam maiúsculas de minúsculas. Duas chaves que diferem apenas pelo caso são consideradas únicas e possuem entradas de Mapa distintas correspondentes. Posteriormente, os métodos Map, incluindocolocar,pegar,contém chave, e remover (put, get, containsKey, and remove) trate essas chaves como distintas.
+            
+
+            //Este código cria uma lista. setamos como um "map" contém clave e valor
+            ('key' e 'value') 
+             
+
+             O método add() é usado para adicionar cada mapa na lista.
+
+             Map<Integer, String> m1 = new Map<Integer, String>();
+                m1.put(1, 'First item');
+                m1.put(2, 'Second item');
+
+      //   Map <TIPO DE CHAVE, TIPO DE RETORNO>
+           
+           PUT (chave, valor)
+           GET  Retorna o valor do MAPA
+           
+           CONTAINSKEY
+
+------------------------------------------------------------------------------------------------------------------------------
+                
+
+                public class MinhaClasse {
+                   
+                   Map<String, Integer> meuMapa;
+                    
+
+                    meuMapa.put('Chave 1', 10);
+                    meuMapa.put('Chave 2', 20);
+
+            }
+
+                public MinhaClasse() {
+                      
+                meuMapa = nomeMapa <String, Integer>();
+            
+
+                For( String NomedoForEach : nomeMapa.keySet())
+            
+                    Integer valor = nomeMapa.get(chave);
+                        
+                    System.debug('A chave ' + chave + ' tem o valor ' + valor);
+            }
+
+           
+         keySet() - retorna  as chaves do map 
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
+                    Verificar se a lista esta cheia ou vazia:
+
+
+                            if (nomeMapa.isEmpty()){
+                              
+                              System.debug('Esta vazia');
+                            
+                            }else{
+                              
+                              System.debug('Esta cheia');
+                            }
+
+-----------------------------------------------------------------------------------------------------------
+
+  getQuantidadeprodutos que é um map "produtos" soma os valores. 
+
+
+                    public Integer getQuantidadeprodutos() {
+                           
+                           Integer quantidade = 0;
+                        
+                        for(String key : produtos.keySet()){
+                            quantidade += produtos.get(ket);
+                        }
+                        
+                        return quantidade; 
+
+                    }
+
+
+                    Pedido ped1 = new Pedido();
+                    ped1.addProduto('Teclado', 1);
+                    ped1.addProduto('Mouse',1);
+                    ped1.addProduto('Monitor',2);
+
+                    System.debug(ped1.getQuantidadeprodutos());
+
+-----------------------------------------------------------------------------------------------------------
+
+
+
+  //================================================================================================
+        
+                              // MAP - DENTRO DE MAP
+
+                    https://www.youtube.com/watch?v=q5DAom3VFMI&t=5972s - 1:38:00
+
+ //===============================================================================================
+
+
+
+
+                public class ExemploMap {
+                
+                public Map<String, List<Map<String, Object>>> 
+                 
+                 //https://www.youtube.com/watch?v=q5DAom3VFMI&t=5972s 26:00
+                    
+                    mapExemplo {get; // get que podemos colocar um estrutura de condição se for preciso!
+                                
+                                set;}// set que podemos colocar private
+
+                public ExemploMap() {
+                    
+                    mapExemplo = new Map<String, List<Map<String, Object>>>();
+                }
+
+                public void adicionaExemplo(String chave1, String chave2, Object valor) {
+                    
+                    Map<String, Object> mapInterno = new Map<String, Object>();
+                    
+                    mapInterno.put(chave2, valor);
+
+                    
+                    if (!mapExemplo.containsKey(chave1)) {
+                        mapExemplo.put(chave1, new List<Map<String, Object>>());
+                    }
+
+                    mapExemplo.get(chave1).add(mapInterno);
+                }
+            }
+
+
+
+
+-----------------------------------------------------------------------------------------------------------
+
+
+
+                                Boas praticas do map 
+                            
+                            Iniciar a lista como não "!" para apresenta-la
+
+            
+
+                    public void addProduto(String produto, Integer qtd){
+                         
+                         if (!produtos.containsKey(produto)){
+                              produto.put(produto, 0);
+                         }
+                             produto.put(produto.get(produto) + qtd );
+
+                                    
+                                    -Mesmo coisa-
+
+
+
+                        if (produtos.containsKey(produto)) {
+            
+                        Integer quantidadeAnterior = produtos.get(produto);
+                        
+                        Integer qtdAtualizada = quantidadeAnterior + qtd;
+                        
+                        produtos.put(produto, qtdAtualizada);
+                    
+                    } else {
+                        
+                        produtos.put(produto, qtd);
+
+                    }
+                }
+
+
+
+//============================================================================================================================
+
+                                   // TRANSFORMAÇÃO DE STRING PARA INTEGER
+
+
+//============================================================================================================================
+
+        /* Aqui estou declarando duas variaveis integer e string, são diferente né? 
+          não pode ser chamadas em uma lista juntas mais com valueOf eu transformei um 
+          interge em string. Sendo assim podemos chamar as duas no mesmo lista(array).
+            
+            
+
+            Integer myInt = 42;
+            
+            String myString = 'Answer';
+            
+            System.debug('The {} is {}', new List<String>{myString, String.valueOf(myInt)});
+        */
+
+
+
+
+            //List<TipoDeDado> nomedalista = new List<TipoDeDado>{};
+
+            List<String> CidadesDoBrasil = new List<String>{
+                'Taubaté', 'Recife', 'Sobral', 'São Paulo', 'Rio de Janeiro'};
+
+            //Exibir lista toda
+            
+            System.debug(CidadesDoBrasil);
+
+            //Exibir apenas 1 valor da lista
+            
+            System.debug(CidadesDoBrasil[1]);
+
+            //Exibir mais de um valor da lista
+            
+            System.debug(CidadesDoBrasil[1] + CidadesDoBrasil[2]);
+
+            //List<TipoDeDado> nome da lista = new List<TipoDeDado>{};
+            
+            List<String> Frutas = new List<String>(3);
+            Frutas[1] = 'Banana';
+            Frutas[0] = 'Laranja';
+            Frutas[2] = 'Maçã';
+            Frutas[3] = 'Pêra'
+
+            //função de adicionar elementos na minha lista
+            // add() ->> eh uma função que insere valores na lista =D
+            // nomeDaLista.add(valor);
+
+
+
+
+//==============================================================================================
+
+                         // EXEMPLOS DE LISTAS .ADD .REMOVE
+
+
+//==============================================================================================
+
+
+public class MinhaClasse {
+
+    public static void adicionarElemento(List<String> minhaLista, String novoElemento) {
+        minhaLista.add(novoElemento);
+    }
+}
+
+|List<String> minhaLista| = new List<String>{'elemento 1', 'elemento 2', 'elemento 3'};
+minhaLista.add('elemento 4');
+
+
+==================================================================================================
+
+public class MinhaClasse {
+
+    public static void removerElemento(List<String> minhaLista, String elementoRemovido) {
+        minhaLista.remove(elementoRemovido);
+    }
+}
+
+|List<String> minhaLista| = new List<String>{'elemento 1', 'elemento 2', 'elemento 3'};
+minhaLista.remove('elemento 2');
+
+
+-----------------------------------------------------------------------------------------------------------
+                                     No code 
+
+                List<string> lst1 = new List <string> ();
+                lst.add('a');
+                lst.add('b');
+                lst.add('c');
+                System.debug(lst);
+
+                List<string> lst2 = new List <string> ();
+
+                lst2.addALL(lst1);
+                lst2.add('d');
+                lst2.add('e');
+                System.debug(lst2);
+
+
+
+                                  
+
+=========================================================================================================
+
+
+
+                                     Classe 1 - MinhaClasse:
+
+    public class MinhaClasse {
+        
+        public List<Integer> minhaLista = new List<Integer>();
+        
+        // Metodo que vai ser chamado na segunda classe
+
+        public void meuMetodo() {
+            
+        // Adiciona alguns elementos à lista
+            
+            minhaLista.add(10);
+            minhaLista.add(20);
+            minhaLista.add(30);
+            minhaLista.add(40);
+            
+            // Imprime a minhalista
+            
+            System.debug(minhaLista);
+        }
+    }
+
+
+                                    Classe 2 - ChamadorDeMetodo:
+
+    public class ChamadorDeMetodo {
+        
+        // Metodo void  
+        
+        public void chamarMeuMetodo() {
+            
+            //Foi criada uma nova lista para chamar o outra lista 
+            
+            MinhaClasse minhaClasse = new MinhaClasse();
+            
+            //"Minha classe e a lista" e "meuMetodo e metodo fora dessa classe"
+            
+            minhaClasse.meuMetodo();
+            
+            //Imprime a lista atualizada da classe MinhaClasse
+            
+            System.debug(minhaClasse.minhaLista);
+        }
+    }
+
+                                         ---CODE---
+
+ChamadorDeMetodo c = new ChamadorDeMetodo();
+c.chamarMeuMetodo();
+
+
+
+
+=========================================================================================================
+
+public class MinhaClasse {
+   // Definindo a variável lista do tipo lista de inteiros
+   List<Integer> minhaLista = new List<Integer>();
+
+   // Método para adicionar um elemento na lista
+   public void adicionarElemento(Integer elemento) {
+      minhaLista.add(elemento);
+   }
+
+   // Método para remover um elemento da lista
+   public void removerElemento(Integer elemento) {
+      minhaLista.remove(elemento);
+   }
+
+   // Método para obter o tamanho da lista
+   public Integer tamanhoLista() {
+      return minhaLista.size();
+   }
+}
+
+
+/**
+ *
+ * @autora Roberta Cristina
+ */ 
