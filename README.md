@@ -12,7 +12,7 @@ Anotações na linguagem APEX para revisões rápidas.
 </div>
 
 <div align="center">
-<img src="https://user-images.githubusercontent.com/110033143/232263542-3da4548d-c8c5-47a8-97eb-82d2810d5b87.png" width="500px" />
+<img src="https://user-images.githubusercontent.com/110033143/232319157-75072566-3696-4943-a602-c6bccf939446.jpg" width="500px" />
 </div>
 
 
