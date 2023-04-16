@@ -38,6 +38,8 @@ Ordenando é:
 
 Você pode usar a cláusula "ORDER BY" para ordenar os resultados da consulta. Por exemplo:
 
+List<Account> Accounts = [SELECT Name, Industry FROM Account WHERE Industry = 'Technology' ORDER BY Name ASC]
+
 SELECT Name, Industry FROM Account WHERE Industry = 'Technology' ORDER BY Name ASC
 
 Esta consulta seleciona os campos "Nome" e "Indústria" do objeto "Conta" onde a indústria é "Tecnologia" e ordena os resultados pelo campo "Nome" em ordem ascendente.
@@ -91,19 +93,18 @@ List<Account> accs = [SELECT Id FROM Account WHERE Name IN :lastNames];
 
 //1. Retorne todas as contas agrupadas pelo tipo de Negócio
 
-1.1 () 
+1.1  
 SELECT Name, Type FROM Account GROUP BY Name,Type HAVING Type != NULL
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
 
 //2. Some os valores de todas as oportunidades que foram perdidas no ultimo mês e agrupe pelo motivo da perda
 
-2.1 SELECT Stagename, Closedate, MOTIVO_DA_PERDA__c, Name, SUM(Amount) FROM Opportunity WHERE Stagename = 'Closed Lost' AND Closedate > LAST_MONTH GROUP BY Stagename, Closedate, Name, MOTIVO_DA_PERDA__c
+2.1 SELECT Stagename, Closedate,motivo__c , Name, SUM(Amount) FROM Opportunity WHERE Stagename = 'Closed Lost' AND Closedate > LAST_MONTH GROUP BY Stagename, Closedate, Name, motivo__c
 
 SELECT Motivo__c, SUM(Amount) FROM Opportunity WHERE Stagename = 'Closed Lost' AND CloseDate = LAST_MONTH GROUP BY Motivo__c
 
-2.2 ()
-SELECT Motivo__c, SUM(Amount) FROM Opportunity WHERE Stagename = 'Closed Lost' AND CloseDate = LAST_MONTH GROUP by motivo__c
+2.2 SELECT Motivo__c, SUM(Amount) FROM Opportunity WHERE Stagename = 'Closed Lost' AND CloseDate = LAST_MONTH GROUP by motivo__c
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -111,7 +112,7 @@ SELECT Motivo__c, SUM(Amount) FROM Opportunity WHERE Stagename = 'Closed Lost' A
 
 3.1 SELECT Id, Firstname, Lastname, Account.Name FROM Contact WHERE Accountid != Null GROUP BY Account.Name
                              Subconsulta
-                            filho(Plural)    Pai(Singular)
+                            filho(Plural)   Pai(Singular)
                                  |             |
 3.2 SELECT (SELECT Name FROM contacts) FROM Account WHERE ParentId != Null
 
@@ -139,12 +140,11 @@ SELECT Motivo__c, SUM(Amount) FROM Opportunity WHERE Stagename = 'Closed Lost' A
 
 5.2 Select COUNT(ID) from opportunity where account.name like '%restaurante%girafa%'
 
-5.3
-SELECT AccountId,Count(Id),Account.Name
-FROM Opportunity
-GROUP BY AccountId,Account.Name 
-HAVING AccountId != null 
-AND Account.Name  = ' Restaurante Gifara'
+5.3     SELECT AccountId,Count(Id),Account.Name
+        FROM Opportunity
+        GROUP BY AccountId,Account.Name 
+        HAVING AccountId != null 
+        AND Account.Name  = ' Restaurante Gifara'
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
@@ -156,17 +156,18 @@ AND Account.Name  = ' Restaurante Gifara'
 
 //7. Selecione o Id e Nome dos tipos de registro do objeto Despesa e Oportunidade
 
-7.1 ()
-SELECT Id, name, (SELECT name FROM Despesas__r) FROM opportunity
+7.1 SELECT Id, name, (SELECT name FROM Despesas__r) FROM opportunity
 
-7.2 ()
-SELECT Id, name, (SELECT name FROM Projetos__r), (SELECT name FROM Opportunities) FROM Account
+
+                              Filho                           Filho(plural)         Pai(Singular)
+                                |                                 |                       |
+7.2 SELECT Id, name, (SELECT name FROM Projetos__r), (SELECT name FROM Opportunities) FROM Account
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 //8. Selecione todos os Leads que possuem o Email igual
 
-8.1 ()
+8.1 
 SELECT Count(Id), Email FROM Lead GROUP BY Email HAVING Count(Id) > 1
 
 8.2 SELECT Name, Count(Id), Email FROM Lead GROUP BY Email, Name HAVING Count(Id) > 1
@@ -183,25 +184,25 @@ SELECT Count(Id), Email FROM Lead GROUP BY Email HAVING Count(Id) > 1
 
 10.1 SELECT Id, CaseNumber, AccountId, CreatedDate FROM Case WHERE Status != 'Closed' AND CreatedDate > LAST_N_WEEKS:2
 
-10.2 ()
-SELECT Id,CaseNumber,FORMAT(CreatedDate )
-FROM Case 
-WHERE Status != 'Closed' AND Case.CreatedDate < LAST_N_WEEKS:2
+ 
+10.2    SELECT Id,CaseNumber,FORMAT(CreatedDate )
+        FROM Case 
+        WHERE Status != 'Closed' AND Case.CreatedDate < LAST_N_WEEKS:2
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
 //11. Selecione qual são os tipos de caso que são mais abertos durante o mês atual
 
 11.1 SELECT Type, COUNT(id) FROM Case WHERE CreatedDate = THIS_MONTH GROUP BY Type
 
-11.2()
-Select Type, Count(CaseNumber) cnt From Case Group By Rollup(Type) Order By Count (casenumber) DESC
+11.2 Select Type, Count(CaseNumber) cnt From Case Group By Rollup(Type) Order By Count (casenumber) DESC
 
-11.3()
-SELECT Type, COUNT(Id) FROM Case WHERE CreatedDate = THIS_MONTH GROUP BY Type ORDER BY COUNT(Id) DESC
 
-11.4()
-Select Type, Count(CaseNumber) cnt From Case THIS_MONTH where type != null  Group By type Order By Count
+11.3 SELECT Type, COUNT(Id) FROM Case WHERE CreatedDate = THIS_MONTH GROUP BY Type ORDER BY COUNT(Id) DESC
+
+
+11.4 Select Type, Count(CaseNumber) cnt From Case THIS_MONTH where type != null  Group By type Order By Count
 (casenumber) DESC
+
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -210,12 +211,13 @@ Select Type, Count(CaseNumber) cnt From Case THIS_MONTH where type != null  Grou
 12.1 SELECT Name, (SELECT Tipo_de_Despesas_c FROM Despesas_r)
 FROM Account WHERE (NOT Active__c Like 'Yes')
 
-12.2 ()
-SELECT Conta__c,Conta__r.Name,TipoDespesa__c,Conta__r.Active__c
-FROM Despesa__c
-WHERE Conta__r.Active__c = 'No'
+ 
+12.2    SELECT Conta__c,Conta__r.Name,TipoDespesa__c,Conta__r.Active__c
+        FROM Despesa__c
+        WHERE Conta__r.Active__c = 'No'
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
+
 //13. O Time de negócios gostaria de saber quais são os clientes que possuem o melhor faturamento, e quais são os tipos de empresa que possuem.
 
 13.1 SELECT Name, FORMAT(AnnualRevenue), Industry 
@@ -225,27 +227,27 @@ FROM Account WHERE AnnualRevenue != null ORDER BY AnnualRevenue DESC
 
 //14. Retorne quais contas foram criadas/alteradas por usuários que não são administradores do Sistema.
 
-14.1 SELECT Name FROM Account WHERE CreatedById IN (
-     SELECT Id FROM User 
-     WHERE ProfileId != 'idAQUI')
+14.1     SELECT Name FROM Account WHERE CreatedById IN (
+         SELECT Id FROM User 
+         WHERE ProfileId != 'idAQUI')
 
-14.2 
-    SELECT Name, CreatedBy.Profile.Name, LastModifiedBy.Profile.name 
-    FROM Account WHERE CreatedBy.Profile.Name != 'System Administrator' 
-    OR LastModifiedBy.Profile.name != 'System Administrator' 
+ 
+14.2    SELECT Name, CreatedBy.Profile.Name, LastModifiedBy.Profile.name 
+        FROM Account WHERE CreatedBy.Profile.Name != 'System Administrator' 
+        OR LastModifiedBy.Profile.name != 'System Administrator' 
 
-14.3 
-    Select name, CreatedBy.Profile.Name  from account 
-    where CreatedBy.Profile.Name != 'System Administrator' 
-    or LastModifiedBy.Profile.Name != 'System Administrator'
+ 
+14.3    Select name, CreatedBy.Profile.Name  from account 
+        where CreatedBy.Profile.Name != 'System Administrator' 
+        or LastModifiedBy.Profile.Name != 'System Administrator'
 
-14.4 
-    SELECT Id, name
-    FROM Account
-    WHERE  CreatedBy.Profile.Name != 'System Administrator' 
-    OR  LastModifiedBy.Profile.Name != 'System Administrator' 
-    OR LastModifiedBy.Profile.Name != 'Administrador do sistema' 
-    OR CreatedBy.Profile.Name != 'Administrador do sistema'
+
+14.4    SELECT Id, name
+        FROM Account
+        WHERE  CreatedBy.Profile.Name != 'System Administrator' 
+        OR  LastModifiedBy.Profile.Name != 'System Administrator' 
+        OR LastModifiedBy.Profile.Name != 'Administrador do sistema' 
+        OR CreatedBy.Profile.Name != 'Administrador do sistema'
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -262,7 +264,7 @@ For(Lead Leads : Leads.values()){
     System.debug('\n');
 }
 
-1.2 ()
+1.2 
 List <lead> Resgateleads = [
 	SELECT name,Company,State,Email FROM lead 
 	WHERE State LIKE 'CA' OR State LIKE 'VA'
@@ -302,7 +304,7 @@ For(Contact Contacts : Contacts.Values()){
     system.debug('Telefone:' + Contacts.Phone + '\N');
 }
 
-2.3 ()
+2.3 
 List<Contact> contatos = [Select Name, Title, Phone, Account.Name From Contact Where Account.name Like '%United%' Or Account.name Like '%Ltd%'];
 
 For(Contact contact:contatos){
@@ -314,7 +316,7 @@ For(Contact contact:contatos){
     System.debug('\n');
 }
 
-2.4 ()
+2.4 
 List<Contact> contatos = [Select Name, Title, Phone, Account.Name From Contact Where Account.name Like '%United%' Or Account.name Like '%Ltd%'];
 
 For(Contact contact:contatos){
@@ -360,7 +362,7 @@ For(Account Accounts : C){
     System.debug('\N');
 }
 
-3.2 ()
+3.2 
 List<account> contas = [SELECT Name, Phone, Rating, CreatedDate, (select name, phone from contacts order by name)  FROM Account order by CreatedDate desc];
 
 for(account c : contas){
@@ -374,7 +376,7 @@ for(contact ctt : c.contacts){
     system.debug('telefone do contato: ' + ctt.phone);
     system.deb
 
-3.3 ()
+3.3 
 List <Account> ResgateContas = [SELECT name, phone, rating, createdDate,(SELECT name, phone FROM Contacts ORDER BY Name) FROM Account ORDER BY CreatedDate DESC];
 
 for(Account a : ResgateContas){
