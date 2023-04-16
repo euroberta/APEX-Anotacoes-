@@ -1,0 +1,266 @@
+//================================================================================================
+        
+                             //ESTRUTURA DE REPETIÇÃO
+        https://www.youtube.com/watch?v=fBOykLCpOPo&list=PLLkOunY3VivQ8ecT6B44-Ozg4ukDBHMWS&index=16
+        https://www.youtube.com/watch?v=fBOykLCpOPo&list=PLLkOunY3VivQ8ecT6B44-Ozg4ukDBHMWS&index=17
+        https://www.youtube.com/watch?v=_YUFIlDsBno
+
+ //================================================================================================
+
+
+
+
+//========================================================================================================
+        
+                               // ESTRUTURA FOR 
+                               
+        https://www.youtube.com/watch?v=BWbtO21-eQc&list=PLLkOunY3VivQ8ecT6B44-Ozg4ukDBHMWS&index=8
+        https://www.youtube.com/watch?v=BWbtO21-eQc&list=PLLkOunY3VivQ8ecT6B44-Ozg4ukDBHMWS&index=8
+        https://www.youtube.com/watch?v=wkH2-WE7p4k&list=PLLkOunY3VivQ8ecT6B44-Ozg4ukDBHMWS&index=11
+
+//========================================================================================================
+        /* 
+            A estrutura de repetição for é indicada para as situações onde
+            previamente se sabe quantas repetições serão necessárias. 
+        
+            Essa estrutura é composta por  partes:
+            
+            1 - Criação da variável de controle da estrutura
+            2 - Condição de parada
+            3 - Incremento
+            4 - No for sabamos quando começa e quando termina.
+            5 - For é mais usado quando a lista tem tamanho definido. 
+        
+            Cada uma dessas partes é separada por um ";"
+         */
+        
+        for (int i = 0; i < 10; i++) {
+             
+             System.debug("O valor de i é: " + i);
+        
+        }
+--------------------------------------------------------------------------------------------------
+        
+
+        public class mostrarConta{
+
+
+                public static void mostraConta(){
+
+                List <Account> conta = SelectAccount.retornaContas();
+                 
+                nome da lista : 
+               
+                for( Account acc : conta){
+                 
+                 System.debug(acc);
+
+            }
+
+
+        }
+
+    }
+-----------------------------------------------------------------------------------------------------------
+                           
+
+                            public class SelectAccount{
+
+                            public static List <Account> retornaContas(){
+                                    return [ SELECT Id, Name FROM Account Limit 3];
+
+                            }
+                     }
+-------------------------------------------------------------------------------------------------------
+       
+
+
+//=====================================================================================================
+        
+                                     // FOR EACH
+        
+        https://www.youtube.com/watch?v=wEVMb-rGyR0  18:00
+
+//=====================================================================================================
+
+
+
+
+                      List  <NomeAqui>   NomeLista =[ SELECT ID, NAME, STATUS FROM objeto];
+                               |                 |
+                               |                 |
+                        For(NomeAqui itemLista:NomeLista)
+                                        |
+                                  Nome da lista 
+
+                                  
+O for each em Apex é uma estrutura de loop que permite iterar sobre uma lista de elementos, executando um bloco de código para cada item na lista. Quando usado com uma lista do tipo Map, o loop percorre cada par chave-valor do mapa.
+
+Para usar o for each em uma lista de mapas em Apex, você precisa seguir os seguintes passos:
+
+Declare uma variável para armazenar cada elemento na lista. Para percorrer um mapa, a variável deve ser do tipo Map<Key, Value>, onde Key é o tipo de dado da chave do mapa e Value é o tipo de dado do valor associado a essa chave.
+
+Use a sintaxe for (Key variavel : lista.keySet()) para iterar sobre as chaves do mapa ou for (Value variavel : lista.values()) para iterar sobre os valores do mapa.
+
+Dentro do loop, você pode acessar os elementos do mapa usando a chave correspondente. Por exemplo, se a chave for uma string, você pode acessar o valor do mapa usando a sintaxe mapa.get(chave).
+
+Aqui está um exemplo de como usar o for each com uma lista de mapas em Apex:
+                
+
+                   #ENTER CODE APEX 
+                    
+                    // declarando um mapa
+                    
+                    Map<String, Integer> mapa = new Map<String, Integer>();
+                    
+                    mapa.put('Chave1', 1);
+                    mapa.put('Chave2', 2);
+                    mapa.put('Chave3', 3);
+
+                    // iterando sobre o mapa com for each
+                    
+                    for (String chave : mapa.keySet()) {
+                        
+                        Integer valor = mapa.get(chave);
+                        
+                        System.debug('A chave ' + chave + ' tem o valor ' + valor);
+                    }
+
+Neste exemplo, estamos declarando um mapa com três pares chave-valor e, em seguida, usando o "for each" para iterar sobre as chaves do mapa. Dentro do loop, estamos acessando o valor de cada chave usando o método get() do mapa e imprimindo a chave e o valor na saída de depuração do sistema.
+
+
+
+                List<Account> accounts = [SELECT Id, Name FROM Account];
+                
+                for (Account acc : accounts) {
+                    
+                    System.debug('Account Name: ' + acc.Name);
+                
+                }
+
+-----------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+//=====================================================================================================
+        
+
+                               // ESTRUTURA DO WHILE 
+
+
+//=====================================================================================================
+           
+
+           Essa estrutura é composta por 3 partes:
+            1 - Criação da variável de controle da estrutura
+            2 - Executa pelo menos uma vez 
+            3 -  
+            4 -  
+        
+
+            integer Roberta = 1;
+                
+                do{
+                   
+                    system.debug (Roberta + '- contagem');
+                    
+                    Roberta ++ ;
+                
+                }while (Roberta <= 5);
+       /*
+            Algumas coisas que você deve tormar cuidado quando trabalha com
+            estruturas de repetição é em garantir que a condição de parada
+            em algum momento seja atentida caso contrário sua estrutura de
+            repetição ficará em um loop infinito.
+        
+            Outra coisa que você não deve fazer é criar variáveis dentro de uma
+            estrutura de repetição. Caso você faça isso, a cada repetição da 
+            estrutura seu algoritmo estará alocando memória do computador e 
+            isso fará com que sua aplicação tenha um alto consumo de memória.
+            Caso você precise ler valores dentro da estrutura, crie as variáveis
+            de leitura fora da estrutura repetição 
+         */
+
+//=====================================================================================================
+         
+
+                                 // ESTRUTURA WHILE
+
+
+//=====================================================================================================
+       
+
+        /*
+            A estrutura while é utilizada quando a quantidade de repetições
+            necessárias não for preciamente conhecida. Ex: quando você quer 
+            repetir algumas instruções N vezes.Essa estrutura é composta por 3 partes:
+            
+            1 - Criação da variável de controle da estrutura
+            2 - Condição de parada
+            3 - Incremento e decremento 
+            4 - Na estrutura while, a variavel é declarada fora do parentasse e o incremento pode ficar a baixo do comando de saída. 
+
+         */
+        
+        
+                                    Integer i = 0;
+                                        
+                                    while (i < 10) {
+                                            
+                                        System.debug(i);
+                                            
+
+                                            i++;
+                                     }
+
+
+
+     //======================================================================
+        
+                          // INCREMENTO E DECREMENTO 
+
+     //======================================================================
+
+
+
+    "INCREMENTO"
+        
+        Para adicionar + 1 no valor de qualquer variável devemos usar das seguintes forma:
+
+            var = var + 1
+            ou
+            var++
+
+        Podemos usar loop de repetição, mostra os valores de 1 até 10.
+            
+            for(integer i = 1; i <= 10; i ++ ){
+                
+                system.debug( i + ' - na contagem');
+}
+    
+
+    "DECREMENTO"
+        
+        Para remover 1 no valor de qualquer variável devemos usar das seguintes forma:
+
+            var = var – 1
+            ou
+            var --
+
+        Podemos usar loop de repetição, mostra os valores de 10 até 0.
+            
+                 for (Integer i = 10; i >= 0; i--) {
+
+                    System.debug(i  + '- na contagem');
+                
+                }
+
+
+
+/**
+ *
+ * @authora Roberta Cristina
+ */ 
