@@ -386,3 +386,36 @@ for(Account a : ResgateContas){
 
 
 
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Queremos selecionar um registro de conta somente se seu Id for encontrado no campo AccountId de um Contato retornado pela subconsulta. Assim, adicionamos WHERE Id IN seguido pela subconsulta, assim: 
+
+
+                          filho (Plural) 
+                                 |
+SELECT Name, (SELECT Name FROM Contacts) 
+              FROM Account WHERE Id IN (
+              SELECT AccountId 
+              FROM Contact 
+              WHERE LastName = 'Silva')
+
+
+
+Essa consulta faz quatro coisas. 
+
+Ela encontra contatos com o sobrenome Forbes e retorna o valor do campo AccountId de cada contato. (A subconsulta da cláusula WHERE faz isso.)
+
+Em seguida, ela encontra o valor desse AccountId no campo Id de uma conta e recebe o nome dessa conta. (A cláusula WHERE principal faz isso.)
+
+Em seguida, a consulta olha os contatos relacionados da conta e obtém o nome de cada contato. (A subconsulta da consulta principal faz isso.)
+
+Finalmente, a consulta principal retorna o nome de cada conta que tenha um contato relacionado com o sobrenome Forbes e, para cada uma dessas contas, os nomes de todos os contatos relacionados.
+
+O resultado terá duas colunas, a primeira coluna será o nome da conta e a segunda coluna será o nome do contato. A subconsulta (SELECT Name FROM Contacts) retorna o nome de todos os contatos, e a cláusula WHERE Id IN (SELECT AccountId FROM Contact WHERE LastName = 'Forbes') limita o resultado para contatos que estão associados a uma conta cujo sobrenome do contato é 'Silva'.
+
+
+/**
+ *
+ * @autora Roberta Cristina
+ */ 
