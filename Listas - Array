@@ -101,7 +101,7 @@
    
    Após a execução deste código, o conjunto numeros pode ser {1, 2, 3} ou {2, 1, 3} ou {3, 2, 1} ou qualquer outra ordem, já que a ordem não é mantida em um Set.
 
-   Se você precisa de uma coleção ordenada em Apex, use uma lista em vez de um Set
+
 
 
  //==========================================================================================================================================================
