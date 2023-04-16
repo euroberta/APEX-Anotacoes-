@@ -12,18 +12,21 @@
 
 SOQL:
 
-SELECT field1, field2, ... FROM object WHERE condition
+SELECT .. FROM ..   WHERE ..
 
-Onde "field1, field2, ..." são os campos que você deseja selecionar na consulta, "object" é o objeto Salesforce a partir do qual você deseja selecionar os campos e "condition" é uma condição opcional que você pode usar para restringir a seleção dos dados.
+SELECT campo1, campo2, ... FROM object WHERE condition
 
-Selecionando Campos
+Onde "campo1, campo2, ..." são os campos que você deseja selecionar na consulta, "object" é o objeto Salesforce a partir do qual você deseja selecionar os campos e "condition" é uma condição opcional que você pode usar para restringir a seleção dos dados.
+
+Selecionando Campos é:
+
 Para selecionar campos específicos, você pode usar a cláusula "SELECT" seguida pelos nomes dos campos separados por vírgula. Por exemplo:
 
 SELECT Name, Industry FROM Account
 
 Esta consulta seleciona os campos "Nome" e "Indústria" do objeto "Conta".
 
-Filtrando Dados:
+Filtrar é :
 
 Você pode usar a cláusula "WHERE" para filtrar dados com base em uma ou mais condições. Por exemplo:
 
@@ -31,7 +34,7 @@ SELECT Name, Industry FROM Account WHERE Industry = 'Technology'
 
 Esta consulta seleciona os campos "Nome" e "Indústria" do objeto "Conta" onde a indústria é "Tecnologia".
 
-Ordenando Resultados
+Ordenando é:
 
 Você pode usar a cláusula "ORDER BY" para ordenar os resultados da consulta. Por exemplo:
 
@@ -39,14 +42,7 @@ SELECT Name, Industry FROM Account WHERE Industry = 'Technology' ORDER BY Name A
 
 Esta consulta seleciona os campos "Nome" e "Indústria" do objeto "Conta" onde a indústria é "Tecnologia" e ordena os resultados pelo campo "Nome" em ordem ascendente.
 
-Agrupando Resultados
-Você pode usar a cláusula "GROUP BY" para agrupar os resultados da consulta com base em um ou mais campos. Por exemplo:
-
-SELECT Industry, COUNT(Id) FROM Account GROUP BY Industry
-
-Esta consulta agrupa as contas com base na indústria e retorna o número de contas em cada indústria.
-
-Esses são apenas alguns exemplos básicos de como usar SOQL para consultar dados no Salesforce. Há muitas outras cláusulas e recursos disponíveis na linguagem SOQL, e você pode aprender mais sobre eles no guia do desenvolvedor do Salesforce
+-------------------------------------------------------------------------------------------------------------------------------------------------
 
 Os filtros SOQL são usados para filtrar os registros em uma consulta SOQL (Salesforce Object Query Language). Aqui estão alguns dos principais filtros SOQL:
 
@@ -98,8 +94,7 @@ List<Account> accs = [SELECT Id FROM Account WHERE Name IN :lastNames];
 SELECT Name, Type FROM Account GROUP BY Name,Type HAVING Type != NULL
 
 ------------------------------------------------------------------
-//2. Some os valores de todas as oportunidades que foram perdidas no ultimo mês e agrupe
-// pelo motivo da perda
+//2. Some os valores de todas as oportunidades que foram perdidas no ultimo mês e agrupe pelo motivo da perda
 
 2.1 SELECT Stagename, Closedate, MOTIVO_DA_PERDA__c, Name, SUM(Amount) FROM Opportunity WHERE Stagename = 'Closed Lost' AND Closedate > LAST_MONTH GROUP BY Stagename, Closedate, Name, MOTIVO_DA_PERDA__c
 
@@ -112,7 +107,7 @@ SELECT Motivo__c, SUM(Amount) FROM Opportunity WHERE Stagename = 'Closed Lost' A
 //3. Retorne todos os contatos das contas que possuem contas pai
 
 3.1 SELECT Id, Firstname, Lastname, Account.Name FROM Contact WHERE Accountid != Null GROUP BY Account.Name
-
+                             Subconsulta
                             filho(Plural)    Pai(Singular)
                                  |             |
 3.2 SELECT (SELECT Name FROM contacts) FROM Account WHERE ParentId != Null
@@ -382,4 +377,3 @@ for(Account a : ResgateContas){
 
 
 SELECT AccountId FROM Contact WHERE Id IN (SELECT ContactId FROM Opportunity WHERE Id = 'Id_da_Oportunidade')
-
