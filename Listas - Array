@@ -1,11 +1,15 @@
-//================================================================================================
-        
-                                        //LISTAS
-        
-        https://www.youtube.com/watch?v=7lteHXbquBw&list=PLLkOunY3VivQ8ecT6B44-Ozg4ukDBHMWS&index=4
+//===========================================================================================================================================================
+       
+                                                                        //LISTAS
+                                       VIDEO: 
 
+                                       https://www.youtube.com/watch?v=7lteHXbquBw&list=PLLkOunY3VivQ8ecT6B44-Ozg4ukDBHMWS&index=4
+                                       
+                                       DOCUMENTAÇÃO:
+                                       
+                                       https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_methods_system_list.htm
 
- //===============================================================================================
+ //==========================================================================================================================================================
      /*  
        Variavel normal: String nomes = 'Roberta'; 
        
@@ -21,8 +25,10 @@
     
     Cada elemento pode ser acessado por seu índice no vetor, iniciando em 0. 
     * /
-    
-   // Declara o array de nomes:
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  
+  // Declara o array de nomes:
 
            String[] nomes = new String[]{'Roberta', 'Maria', 'José'};
 
@@ -36,16 +42,26 @@
 
            
            // Converte a lista de volta para um array
-            nomes = listaNomes.toArray(new String[0]);         
+            nomes = listaNomes.toArray(new String[0]);  
+            
+-----------------------------------------------------------------------------------------------------------------------------------------------------------            
+                                        
+                                        
+                                        List<Integer> numeros = new List<Integer>{5, 3, 1, 4, 2};
+                                        numeros.sort();
+                                        Depois de executar este código, a lista numeros será ordenada como {1, 2, 3, 4, 5}.
 
 
-//=========================================================================================================
-
+ //==========================================================================================================================================================
         
-                        // SET - não ordenada- não aceita valor dublicado
+                                                                // SET  
+                                                      Não ordenada- não aceita valor dublicado
+                                  DOCUMENTAÇÃO:
+                                  
+                                  https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_collections_sets.htm
 
+ //==========================================================================================================================================================
 
-//=========================================================================================================
 
  
  Um conjunto é uma coleção não ordenada de elementos que não contém nenhuma duplicata. Os elementos do conjunto podem ser de qualquer 
@@ -78,14 +94,22 @@
             //Contains
             System.debug('Tem roxo ? ' + C.contains('roxo'));
             System.debug('Tem Rose ? ' + C.contains('Rose'));
+  
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------
+            
+   Set<Integer> numeros = new Set<Integer>{2, 1, 3};
+   
+   Após a execução deste código, o conjunto numeros pode ser {1, 2, 3} ou {2, 1, 3} ou {3, 2, 1} ou qualquer outra ordem, já que a ordem não é mantida em um Set.
+
+   Se você precisa de uma coleção ordenada em Apex, use uma lista em vez de um Set
 
 
-
-
-//===========================================================================================================================
+ //==========================================================================================================================================================
         
-                             // MAP -  chave/valor
+                                                             // MAP -  chave/valor
     DOCUMENTAÇÃO:
+    
+    https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_collections_maps.htm
 
     https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_methods_system_map.htm
     
@@ -103,8 +127,8 @@
     https://www.youtube.com/watch?v=q5DAom3VFMI
 
 
+ //==========================================================================================================================================================
 
-//===========================================================================================================================
 
 As chaves e os valores do mapa podem ser de qualquer tipo de dados — tipos primitivos, coleções, sObjects, tipos definidos pelo usuário e tipos integrados do Apex.
 
