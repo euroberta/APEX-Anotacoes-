@@ -381,79 +381,79 @@ minhaLista.remove('elemento 2');
 
                                      Classe 1 - MinhaClasse:
 
-    public class MinhaClasse {
-        
-        public List<Integer> minhaLista = new List<Integer>();
-        
-        // Metodo que vai ser chamado na segunda classe
+                    public class MinhaClasse {
 
-        public void meuMetodo() {
-            
-        // Adiciona alguns elementos à lista
-            
-            minhaLista.add(10);
-            minhaLista.add(20);
-            minhaLista.add(30);
-            minhaLista.add(40);
-            
-            // Imprime a minhalista
-            
-            System.debug(minhaLista);
-        }
-    }
+                        public List<Integer> minhaLista = new List<Integer>();
+
+                        // Metodo que vai ser chamado na segunda classe
+
+                        public void meuMetodo() {
+
+                        // Adiciona alguns elementos à lista
+
+                            minhaLista.add(10);
+                            minhaLista.add(20);
+                            minhaLista.add(30);
+                            minhaLista.add(40);
+
+                            // Imprime a minhalista
+
+                            System.debug(minhaLista);
+                        }
+                    }
 
 
-                                    Classe 2 - ChamadorDeMetodo:
+                                                    Classe 2 - ChamadorDeMetodo:
 
-    public class ChamadorDeMetodo {
-        
-        // Metodo void  
-        
-        public void chamarMeuMetodo() {
-            
-            //Foi criada uma nova lista para chamar o outra lista 
-            
-            MinhaClasse minhaClasse = new MinhaClasse();
-            
-            //"Minha classe e a lista" e "meuMetodo e metodo fora dessa classe"
-            
-            minhaClasse.meuMetodo();
-            
-            //Imprime a lista atualizada da classe MinhaClasse
-            
-            System.debug(minhaClasse.minhaLista);
-        }
-    }
+                    public class ChamadorDeMetodo {
 
-                                         ---CODE---
+                        // Metodo void  
 
-ChamadorDeMetodo c = new ChamadorDeMetodo();
-c.chamarMeuMetodo();
+                        public void chamarMeuMetodo() {
+
+                            //Foi criada uma nova lista para chamar o outra lista 
+
+                            MinhaClasse minhaClasse = new MinhaClasse();
+
+                            //"Minha classe e a lista" e "meuMetodo e metodo fora dessa classe"
+
+                            minhaClasse.meuMetodo();
+
+                            //Imprime a lista atualizada da classe MinhaClasse
+
+                            System.debug(minhaClasse.minhaLista);
+                        }
+                    }
+
+                                                         ---CODE---
+
+                ChamadorDeMetodo c = new ChamadorDeMetodo();
+                c.chamarMeuMetodo();
 
 
 
 
 =========================================================================================================
 
-public class MinhaClasse {
-   // Definindo a variável lista do tipo lista de inteiros
-   List<Integer> minhaLista = new List<Integer>();
+                   public class MinhaClasse {
+                   // Definindo a variável lista do tipo lista de inteiros
+                   List<Integer> minhaLista = new List<Integer>();
 
-   // Método para adicionar um elemento na lista
-   public void adicionarElemento(Integer elemento) {
-      minhaLista.add(elemento);
-   }
+                   // Método para adicionar um elemento na lista
+                   public void adicionarElemento(Integer elemento) {
+                      minhaLista.add(elemento);
+                   }
 
-   // Método para remover um elemento da lista
-   public void removerElemento(Integer elemento) {
-      minhaLista.remove(elemento);
-   }
+                   // Método para remover um elemento da lista
+                   public void removerElemento(Integer elemento) {
+                      minhaLista.remove(elemento);
+                   }
 
-   // Método para obter o tamanho da lista
-   public Integer tamanhoLista() {
-      return minhaLista.size();
-   }
-}
+                   // Método para obter o tamanho da lista
+                   public Integer tamanhoLista() {
+                      return minhaLista.size();
+                   }
+                }
 
 
 /**
