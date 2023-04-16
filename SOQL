@@ -174,11 +174,6 @@ SELECT Count(Id), Email FROM Lead GROUP BY Email HAVING Count(Id) > 1
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-//9. Selecione todas as contas que começam com Soul e Terminam com Code
-
-9.1 SELECT Id, Name FROM Account WHERE Name LIKE 'Soul%' AND Name LIKE '%Code'
-
--------------------------------------------------------------------------------------------------------------------------------------
 
 //10. Selecione todos os casos que são estão abertos mais de 2 semanas
 
