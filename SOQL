@@ -203,37 +203,35 @@ SELECT Conta__c,Conta__r.Name,TipoDespesa__c,Conta__r.Active__c
 FROM Despesa__c
 WHERE Conta__r.Active__c = 'No'
 
-//13. O Time de negócios gostaria de saber quais são os clientes que possuem o melhor
-// faturamento, e quais são os tipos de empresa que possuem.
+//13. O Time de negócios gostaria de saber quais são os clientes que possuem o melhor faturamento, e quais são os tipos de empresa que possuem.
 
 13.1 SELECT Name, FORMAT(AnnualRevenue), Industry 
 FROM Account WHERE AnnualRevenue != null ORDER BY AnnualRevenue DESC
 
-13.2
 
+//14. Retorne quais contas foram criadas/alteradas por usuários que não são administradores do Sistema.
 
-//14. Retorne quais contas foram criadas/alteradas por usuários que não são administradores
-// do Sistema.
+14.1 SELECT Name FROM Account WHERE CreatedById IN (
+     SELECT Id FROM User 
+     WHERE ProfileId != 'idAQUI')
 
-14.1 SELECT Name FROM Account WHERE CreatedById IN (SELECT Id FROM User WHERE ProfileId != '00e8a000001yiDaAAI')
+14.2 
+    SELECT Name, CreatedBy.Profile.Name, LastModifiedBy.Profile.name 
+    FROM Account WHERE CreatedBy.Profile.Name != 'System Administrator' 
+    OR LastModifiedBy.Profile.name != 'System Administrator' 
 
-14.2 ()
-SELECT Name, CreatedBy.Profile.Name, LastModifiedBy.Profile.name 
-FROM Account WHERE CreatedBy.Profile.Name != 'System Administrator' 
-OR LastModifiedBy.Profile.name != 'System Administrator' 
+14.3 
+    Select name, CreatedBy.Profile.Name  from account 
+    where CreatedBy.Profile.Name != 'System Administrator' 
+    or LastModifiedBy.Profile.Name != 'System Administrator'
 
-14.3 ()
-Select name, CreatedBy.Profile.Name  from account 
-where CreatedBy.Profile.Name != 'System Administrator' 
-or LastModifiedBy.Profile.Name != 'System Administrator'
-
-14.4 ()
-SELECT Id, name
-FROM Account
-WHERE  CreatedBy.Profile.Name != 'System Administrator' 
-OR  LastModifiedBy.Profile.Name != 'System Administrator' 
-OR LastModifiedBy.Profile.Name != 'Administrador do sistema' 
-OR CreatedBy.Profile.Name != 'Administrador do sistema'
+14.4 
+    SELECT Id, name
+    FROM Account
+    WHERE  CreatedBy.Profile.Name != 'System Administrator' 
+    OR  LastModifiedBy.Profile.Name != 'System Administrator' 
+    OR LastModifiedBy.Profile.Name != 'Administrador do sistema' 
+    OR CreatedBy.Profile.Name != 'Administrador do sistema'
 
 -----------------------------------------------------------------------------------------
 // Nivel médio
@@ -325,7 +323,7 @@ For(Contact C2 : C){
 }
 
 --------------------------------------------------------------------------
-// nivel Supremo
+// Nivel Supremo
 
 // 3. Imprima em apex o nome, phone, rating, data de criação das contas ordenados por
 // data de criação decrescente, mostrando também o nome e telefone dos contatos
