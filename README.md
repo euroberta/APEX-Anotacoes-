@@ -3,7 +3,7 @@ Anotações na linguagem APEX para revisões rápidas.
 <h1> Hello Word, APEX! ✍🏼 </h1>
 
 <div align="center">
-<img src="https://user-images.githubusercontent.com/110033143/232263120-50c445b1-e893-4835-aefa-3841fe6964dc.png" width="500px" />
+<img src="https://user-images.githubusercontent.com/110033143/232263876-1dbf6e20-0625-4557-bedf-a3c726af9e89.jpg" width="500px" />
 </div>
 
 <h2>Exemplos do For each: </h2>
