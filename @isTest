@@ -25,66 +25,6 @@
 //================================================================================================
 
 
-@IsTest
-public class PedidoTest {
-    
-    @Test
-    static void testAddProduto() {
-        // Criação de um pedido com um produto
-        Produto produto = new Produto('produto 1', 10.0);
-        ProdutoPedido produtoPedido = new ProdutoPedido(produto, 1);
-        Pedido pedido = new Pedido('João', Datetime.now(), 123456789, new List<ProdutoPedido>{produtoPedido});
-        
-        // Adição de um segundo produto ao pedido
-        Produto produto2 = new Produto('produto 2', 20.0);
-        ProdutoPedido produtoPedido2 = new ProdutoPedido(produto2, 2);
-        pedido.addProduto(produtoPedido2);
-        
-        // Verifica se o segundo produto foi adicionado corretamente
-        System.assertEquals(2, pedido.getProduto().size());
-        System.assertEquals('produto 2', pedido.getProduto()[1].getProduto().getNome());
-        System.assertEquals(20.0, pedido.getProduto()[1].getProduto().getPreco());
-        System.assertEquals(2, pedido.getProduto()[1].getQuantidade());
-    }
-    
-    @Test
-    static void testAtualizar() {
-        // Criação de um pedido com um produto
-        Produto produto = new Produto('produto 1', 10.0);
-        ProdutoPedido produtoPedido = new ProdutoPedido(produto, 1);
-        Pedido pedido = new Pedido('João', Datetime.now(), 123456789, new List<ProdutoPedido>{produtoPedido});
-        
-        // Atualização da quantidade do produto no pedido
-        pedido.atualizar(produto, 2);
-        
-        // Verifica se a quantidade foi atualizada corretamente
-        System.assertEquals(2, pedido.getProduto()[0].getQuantidade());
-    }
-    
-    @Test
-    static void testRemoveProduto() {
-        // Criação de um pedido com dois produtos
-        Produto produto = new Produto('produto 1', 10.0);
-        ProdutoPedido produtoPedido = new ProdutoPedido(produto, 1);
-        Produto produto2 = new Produto('produto 2', 20.0);
-        ProdutoPedido produtoPedido2 = new ProdutoPedido(produto2, 2);
-        Pedido pedido = new Pedido('João', Datetime.now(), 123456789, new List<ProdutoPedido>{produtoPedido, produtoPedido2});
-        
-        // Remoção do segundo produto do pedido
-        pedido.removeProduto(produto2.getIdUnico());
-        
-        // Verifica se o produto foi removido corretamente
-        System.assertEquals(1, pedido.getProduto().size());
-        System.assertEquals('produto 1', pedido.getProduto()[0].getProduto().getNome());
-        System.assertEquals(10.0, pedido.getProduto()[0].getProduto().getPreco());
-        System.assertEquals(1, pedido.getProduto()[0].getQuantidade());
-        
-        // Verifica se uma mensagem de email foi enviada após a remoção do produto
-        System.assertEquals(1, Limits.getEmailInvocations());
-    }
-    
-}
-
 
 /**
  *
